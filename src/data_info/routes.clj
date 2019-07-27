@@ -41,6 +41,7 @@
                    {:name "bulk", :description "Bulk Operations"}
                    {:name "navigation", :description "Navigation"}
                    {:name "users", :description "User Operations"}
+                   {:name "groups", :description "Group Operations"}
                    {:name "filetypes", :description "File Type Metadata"}]}})
   (middleware
     [add-user-to-context
@@ -64,4 +65,5 @@
     ticket-routes/ticket-routes
     trash-routes/trash
     users-routes/users-routes
+    users-routes/group-routes
     (undocumented (route/not-found (svc/unrecognized-path-response)))))

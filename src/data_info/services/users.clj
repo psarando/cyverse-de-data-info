@@ -1,6 +1,5 @@
 (ns data-info.services.users
-  (:require [clojure.tools.logging :as log]
-            [clj-jargon.users :as users]
+  (:require [clj-jargon.users :as users]
             [dire.core :refer [with-pre-hook! with-post-hook!]]
             [data-info.util.config :as cfg]
             [data-info.services.permissions :as perms]
@@ -52,3 +51,15 @@
     (validators/validate-num-paths (:paths body))))
 
 (with-post-hook! #'do-user-permissions (dul/log-func "do-user-permissions"))
+
+(defn add-group
+  [group-name]
+  (irods/with-jargon-exceptions [cm]
+    (users/add-group cm (cfg/irods-zone) group-name))
+  nil)
+
+(defn add-user-to-group
+  [group-name user]
+  (irods/with-jargon-exceptions [cm]
+    (users/add-user-to-group cm (cfg/irods-zone) group-name user))
+  nil)

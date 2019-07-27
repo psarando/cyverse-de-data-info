@@ -1,10 +1,15 @@
 (ns data-info.services.trash
   (:use [clojure-commons.error-codes]
-        [clj-jargon.item-ops]
+        [clj-jargon.item-ops
+         :only [delete
+                mkdirs
+                move]]
         [clj-jargon.item-info]
         [clj-jargon.metadata]
         [clj-jargon.permissions]
-        [clj-jargon.tickets]
+        [clj-jargon.tickets
+         :only [delete-ticket
+                ticket-ids-for-path]]
         [slingshot.slingshot :only [try+ throw+]])
   (:require [clojure.tools.logging :as log]
             [clojure-commons.file-utils :as ft]
